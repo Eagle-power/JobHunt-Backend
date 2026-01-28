@@ -24,6 +24,10 @@ public class ProfileDTO {
 	private String location;
 	private String about;
 	private String picture;
+	 private String resumePdf;      // Base64
+	    private String resumeFileName;
+	    private String resumeText;
+
 	private Long totalExp;
 	private List<String>skills;
 	private List<Experience>experiences;
@@ -31,7 +35,24 @@ public class ProfileDTO {
 	private List<Long>savedJobs;
 	
 	public Profile toEntity() {
-		return new Profile(this.id, this.name, this.email, this.jobTitle, this.company, this.location, this.about, this.picture!=null?Base64.getDecoder().decode(this.picture):null,this.totalExp,  this.skills, this.experiences, this.certifications , this.savedJobs);
+		return new Profile(
+				this.id, 
+				this.name, 
+				this.email, 
+				this.jobTitle, 
+				this.company, 
+				this.location, 
+				this.about, 
+				this.picture!=null?Base64.getDecoder().decode(this.picture):null, 
+				this.resumePdf!=null?Base64.getDecoder().decode(this.resumePdf):null,
+				this.resumeFileName,
+				this.resumeText,
+				this.totalExp,  
+				this.skills, 
+				this.experiences, 
+				this.certifications , 
+				this.savedJobs
+				);
 	}
 	 
 }
