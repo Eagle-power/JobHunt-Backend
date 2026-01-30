@@ -7,8 +7,5 @@ import com.jobhunt.exception.JobPortalException;
 public interface ChatService {
 
 	ChatResponseDTO ask(ChatRequestDTO request, String email)
-	        throws JobPortalException;
-
-    
-    
+	        throws JobPortalException; 
 }

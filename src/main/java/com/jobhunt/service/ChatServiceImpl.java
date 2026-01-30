@@ -5,9 +5,11 @@ import org.springframework.stereotype.Service;
 
 import com.jobhunt.dto.ChatRequestDTO;
 import com.jobhunt.dto.ChatResponseDTO;
+import com.jobhunt.entity.ChatHistory;
 import com.jobhunt.entity.Job;
 import com.jobhunt.entity.Profile;
 import com.jobhunt.exception.JobPortalException;
+import com.jobhunt.repository.ChatHistoryRepository;
 import com.jobhunt.repository.JobRepository;
 import com.jobhunt.repository.ProfileRepository;
 import com.jobhunt.utility.OpenRouterClient;
@@ -23,6 +25,9 @@ public class ChatServiceImpl implements ChatService {
     
     @Autowired
     private JobRepository jobRepository;
+    
+    @Autowired
+    private ChatHistoryRepository chatHistoryRepository;
 
 
     @Override
@@ -64,7 +69,18 @@ public class ChatServiceImpl implements ChatService {
         }
 
         String aiReply = openRouterClient.ask(prompt);
+        
+        ChatHistory history = new ChatHistory();
+        history.setUserId(profile.getId());
+        history.setJobId(request.getJobId());
+        history.setUserMessage(request.getMessage());
+        history.setBotReply(aiReply);
+
+        chatHistoryRepository.save(history);
+        
         return new ChatResponseDTO(aiReply);
+        
+        
     }
     
     
