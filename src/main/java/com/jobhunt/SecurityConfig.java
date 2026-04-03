@@ -106,7 +106,7 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
 
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of("http://localhost:3000" , "https://jobhunt-obuw.onrender.com"));
+        config.setAllowedOrigins(List.of("http://localhost:3000" , "https://jobhunt-obuw.onrender.com" , "https://jobhunt.ankurkr.in"));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("Authorization", "Content-Type"));
         config.setAllowCredentials(true);
